@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ValueProposition from '../components/ValueProposition.astro';
+import ProblemSolution from '../components/ProblemSolution.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const APP_NAME = "migrawork";
+
+const faqs = [
+  {
+    q: "This sounds like LegalZoom — how is MigraWork different?",
+    a: "LegalZoom provides general legal documents for any disability. MigraWork is the only platform built specifically for migraine and cluster headache accommodations — our templates reference the exact ADA provisions that apply to your condition, include headache-specific functional limitations (light sensitivity, medication timing, attack unpredictability), and come with scripts for the conversations HR doesn't prepare you for."
+  },
+  {
+    q: "My employer already denied my accommodation request. Can this still help?",
+    a: "Yes. Our appeal templates are designed for denied requests. Many first-time denials happen because employees use the wrong legal language or don't document functional limitations clearly enough. We fix both."
+  },
+  {
+    q: "I don't want my employer to know my private medical details.",
+    a: "MigraWork doesn't store your medical data. You generate your accommodation packet locally and submit directly to HR. We have no access to your information — ever."
+  },
+  {
+    q: "How much does this cost?",
+    a: "Individual access starts at $9.99/month — less than the cost of one specialist visit, and you'll use it for every accommodation cycle. Employers can subscribe for $19/employee/month with the HR dashboard."
+  },
+  {
+    q: "Is this only for cluster headaches or all migraine disorders?",
+    a: "MigraWork covers the full spectrum — episodic migraine, chronic migraine, cluster headache, and related headache disorders. Each template adjusts for the specific functional limitations of your condition."
+  },
+  {
+    q: "Will this guarantee my employer approves my accommodation?",
+    a: "Nothing can guarantee approval — ADA obligations depend on your employer and situation. But MigraWork dramatically increases your odds: properly documented requests with correct legal language are approved at significantly higher rates than informal requests."
+  }
+];
+
+const steps = [
+  {
+    step: "Describe Your Situation",
+    outcome: "Answer 10 questions about your headache disorder, work environment, and past accommodation denials. We translate your experience into legal language."
+  },
+  {
+    step: "Generate Your Package",
+    outcome: "Receive a complete accommodation request packet — formal letter, medical documentation guide, and employer talking points — ready to submit tomorrow."
+  },
+  {
+    step: "Get Your Accommodations",
+    outcome: "Use our follow-up scripts and appeal templates if your employer pushes back. We stay with you until they say yes."
+  }
+];
+---
+
+<Layout
+  title="MigraWork — Workplace Accommodation for Headache Disorders"
+  description="Get migraine-specific ADA accommodation templates that actually work — legally vetted, employer-ready, and built for the battles you've been fighting alone."
+>
+  <Header appName={APP_NAME} />
+  <main>
+    <Hero appName={APP_NAME} />
+    <ProblemSolution />
+    <ValueProposition />
+    <HowItWorks steps={steps} sectionTitle="Three Steps to Workplace Peace of Mind" />
+    <FAQ items={faqs} title="Frequently Asked Questions" />
+    <FinalCTA appName={APP_NAME} />
+  </main>
+  <Footer appName={APP_NAME} />
+</Layout>

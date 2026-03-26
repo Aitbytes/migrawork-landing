@@ -1,0 +1,139 @@
+---
+// ─── FAQ — BOILERPLATE (do not modify per project) ───────────────────────────
+// Pass an array of {q, a} objects as the `items` prop.
+// Renders a JS-animated accordion — smooth max-height transition, accordion
+// behaviour (one item open at a time), keyboard accessible via button element.
+//
+// Usage in index.astro:
+//
+//   import FAQ from '../components/FAQ.astro';
+//
+//   const faqs = [
+//     { q: "Will this work for me?", a: "Yes, because..." },
+//     { q: "How long does it take?", a: "Most users see results in..." },
+//   ];
+//
+//   <FAQ items={faqs} />
+//
+// Optional props:
+//   title   — section heading (default: "Frequently Asked Questions")
+//   bgClass — Tailwind background class (default: "bg-surface")
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+  bgClass?: string;
+}
+
+const {
+  items,
+  title = "Frequently Asked Questions",
+  bgClass = "bg-surface",
+} = Astro.props;
+---
+
+<section id="faq" class={`py-16 sm:py-24 px-4 ${bgClass}`}>
+  <div class="max-w-3xl mx-auto">
+    <h2
+      class="font-heading text-title font-bold text-primary text-center mb-12 sm:mb-16"
+      data-reveal
+    >
+      {title}
+    </h2>
+
+    <div class="space-y-3">
+      {items.map((faq, i) => (
+        <div
+          class="faq-item border border-gray-200/80 rounded-2xl overflow-hidden shadow-card bg-white/60"
+          data-reveal
+          data-reveal-delay={String(Math.min(i + 1, 5))}
+        >
+          <button
+            type="button"
+            class="faq-trigger w-full flex justify-between items-center px-6 py-5 text-left cursor-pointer hover:bg-white/80 transition-colors duration-200"
+            aria-expanded="false"
+          >
+            <span class="font-semibold text-primary pr-6 leading-snug text-base sm:text-lg">
+              {faq.q}
+            </span>
+            <!-- Plus icon — rotates 45° to form × when open -->
+            <span
+              class="faq-icon flex-shrink-0 w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-accent transition-transform duration-300"
+              aria-hidden="true"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+          <!-- Answer panel — height animated via JS -->
+          <div class="faq-panel overflow-hidden" style="max-height: 0;" aria-hidden="true">
+            <div class="px-6 pb-6 pt-1 text-text-muted leading-relaxed text-base">
+              {faq.a}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-panel {
+    transition: max-height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+</style>
+
+<script>
+  function initFAQ() {
+    document.querySelectorAll<HTMLElement>(".faq-item").forEach((item) => {
+      if (item.dataset.faqInit) return;
+      item.dataset.faqInit = "true";
+
+      const trigger = item.querySelector<HTMLButtonElement>(".faq-trigger");
+      const panel   = item.querySelector<HTMLElement>(".faq-panel");
+      const icon    = item.querySelector<HTMLElement>(".faq-icon");
+
+      if (!trigger || !panel) return;
+
+      trigger.addEventListener("click", () => {
+        const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+        // Close all other items (single-open accordion)
+        document.querySelectorAll<HTMLElement>(".faq-item").forEach((other) => {
+          if (other === item) return;
+          const t = other.querySelector<HTMLButtonElement>(".faq-trigger");
+          const p = other.querySelector<HTMLElement>(".faq-panel");
+          const ic = other.querySelector<HTMLElement>(".faq-icon");
+          if (t) t.setAttribute("aria-expanded", "false");
+          if (p) { p.style.maxHeight = "0"; p.setAttribute("aria-hidden", "true"); }
+          if (ic) ic.style.transform = "rotate(0deg)";
+          other.classList.remove("ring-1", "ring-accent/30");
+        });
+
+        if (isOpen) {
+          trigger.setAttribute("aria-expanded", "false");
+          panel.style.maxHeight = "0";
+          panel.setAttribute("aria-hidden", "true");
+          if (icon) icon.style.transform = "rotate(0deg)";
+          item.classList.remove("ring-1", "ring-accent/30");
+        } else {
+          trigger.setAttribute("aria-expanded", "true");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.setAttribute("aria-hidden", "false");
+          if (icon) icon.style.transform = "rotate(45deg)";
+          item.classList.add("ring-1", "ring-accent/30");
+        }
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initFAQ);
+  document.addEventListener("astro:page-load", initFAQ);
+</script>

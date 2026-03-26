@@ -1,0 +1,115 @@
+---
+import WaitlistForm from './WaitlistForm.astro';
+interface Props { appName: string; }
+const { appName } = Astro.props;
+---
+<section class="py-16 sm:py-28 px-4 overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center">
+      <!-- Left: Copy + Form -->
+      <div class="lg:col-span-3 text-center lg:text-left" data-reveal>
+        <!-- Eyebrow -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          ADA-Compliant Accommodation Templates
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-heading text-display font-bold text-primary mb-6 leading-tight">
+          Stop Proving You Have a <em class="not-italic text-accent">Real</em> Disability at Work
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lead text-text-muted mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          Get migraine-specific ADA accommodation templates that actually work — legally vetted, employer-ready, and built for the battles you've been fighting alone.
+        </p>
+
+        <!-- Form -->
+        <div class="mb-5">
+          <WaitlistForm
+            projectName={appName}
+            buttonText="Join the Waitlist"
+            incentiveText="Join 2,400+ headache disorder sufferers on the waitlist"
+            formId="hero"
+          />
+        </div>
+
+        <!-- Trust indicator -->
+        <p class="text-sm text-text-muted flex items-center justify-center lg:justify-start gap-2">
+          <svg class="w-4 h-4 text-success" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          Free during beta — no credit card required
+        </p>
+      </div>
+
+      <!-- Right: Accommodation Card Illustration -->
+      <div class="lg:col-span-2 flex justify-center lg:justify-end" data-reveal data-reveal-delay="2">
+        <!-- Decorative accommodation card with embossed effect -->
+        <div class="relative">
+          <!-- Background glow -->
+          <div class="absolute -inset-4 bg-accent/20 rounded-3xl blur-2xl"></div>
+          
+          <!-- Main card -->
+          <div class="relative bg-white rounded-2xl shadow-card-hover border border-border p-6 w-72 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+            <!-- Embossed header strip -->
+            <div class="absolute top-0 left-6 right-6 h-1 rounded-b-md bg-gradient-to-r from-accent/40 via-accent to-accent/40"></div>
+            
+            <!-- Card content -->
+            <div class="pt-4">
+              <!-- Header -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M12 3a9 9 0 1 0 9 9"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded">OFFICIAL</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="font-heading text-lg font-semibold text-primary mb-1">Accommodation Request</h3>
+              <p class="text-xs text-text-muted mb-5">Workplace Modification — ADA Section 202</p>
+
+              <!-- Divider -->
+              <div class="h-px bg-border mb-4"></div>
+
+              <!-- Details -->
+              <div class="space-y-2.5 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-text-muted">Condition:</span>
+                  <span class="text-primary font-medium">Chronic Migraine</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-text-muted">Requested:</span>
+                  <span class="text-primary font-medium">Remote Work</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-text-muted">Duration:</span>
+                  <span class="text-primary font-medium">Ongoing</span>
+                </div>
+              </div>
+
+              <!-- Footer seal -->
+              <div class="mt-5 pt-4 border-t border-border flex items-center justify-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-success" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold text-success">Approved</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating accent card -->
+          <div class="absolute -bottom-4 -left-6 bg-accent text-white rounded-xl shadow-cta p-4 w-40 transform -rotate-6">
+            <p class="text-xs font-semibold mb-1">Manager Script</p>
+            <p class="text-xs text-white/80">"We can accommodate this under ADA..."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

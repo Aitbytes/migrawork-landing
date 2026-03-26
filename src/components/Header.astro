@@ -1,0 +1,29 @@
+---
+interface Props { appName: string; }
+const { appName } = Astro.props;
+---
+<header class="py-5 px-4 border-b border-border/50 bg-surface/80 backdrop-blur-sm sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 group">
+      <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12l2 2 4-4"/>
+          <path d="M12 3a9 9 0 1 0 9 9"/>
+        </svg>
+      </div>
+      <span class="font-heading text-xl font-semibold text-primary">MigraWork</span>
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden sm:flex items-center gap-8">
+      <a href="#how-it-works" class="text-sm text-text-muted hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-accent hover:after:w-full after:transition-all">How It Works</a>
+      <a href="#faq" class="text-sm text-text-muted hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-accent hover:after:w-full after:transition-all">FAQ</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="#waitlist" class="hidden sm:inline-flex px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-opacity-90 transition-all hover:shadow-card">
+      Join Waitlist
+    </a>
+  </div>
+</header>

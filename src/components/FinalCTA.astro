@@ -1,0 +1,54 @@
+---
+import WaitlistForm from './WaitlistForm.astro';
+interface Props { appName: string; }
+const { appName } = Astro.props;
+---
+<section id="waitlist" class="py-20 sm:py-32 px-4 bg-gradient-to-b from-surface to-white">
+  <div class="max-w-3xl mx-auto text-center">
+    <!-- Headline -->
+    <h2 class="font-heading text-title font-bold text-primary mb-6" data-reveal>
+      You've Spent Years Proving You're Not Faking.
+    </h2>
+    <p class="text-title font-bold text-primary mb-6" data-reveal data-reveal-delay="1">
+      It's Time They Believed You.
+    </p>
+    
+    <!-- Subtext -->
+    <p class="text-lead text-text-muted mb-10 max-w-xl mx-auto" data-reveal data-reveal-delay="2">
+      Join the waitlist for early access to MigraWork — the first workplace accommodation toolkit built for headache disorder sufferers, not generic HR departments.
+    </p>
+
+    <!-- Form -->
+    <div data-reveal data-reveal-delay="3">
+      <WaitlistForm
+        projectName={appName}
+        buttonText="Get Early Access"
+        incentiveText="Free during beta. No credit card required."
+        variant="cta"
+        formId="bottom"
+      />
+    </div>
+
+    <!-- Trust signals -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10" data-reveal data-reveal-delay="4">
+      <div class="flex items-center gap-2 text-sm text-text-muted">
+        <svg class="w-5 h-5 text-success" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        Legally vetted templates
+      </div>
+      <div class="flex items-center gap-2 text-sm text-text-muted">
+        <svg class="w-5 h-5 text-success" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        State-specific compliance
+      </div>
+      <div class="flex items-center gap-2 text-sm text-text-muted">
+        <svg class="w-5 h-5 text-success" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        Built by employment lawyers
+      </div>
+    </div>
+  </div>
+</section>
